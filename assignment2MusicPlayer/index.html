@@ -1,0 +1,105 @@
+
+<!-- My friend Gus recently put out a new ambient album, and I thought it would be perfect to use for this assignment. With his permission I put this site together showcasing his album.-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>is this even real?</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--I chose VT323 from google fonts because I wanted to go for a sort of retro look for the site, and this one was pretty nicely readable after adjusting the spacing. -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css"> 
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- div for the whole page -->
+    <div class="page">
+        
+        <!-- header with title -->
+        <div class="site-header"> 
+            <div class="header-content">
+                        <h1 class="album-title-header">is this even real?</h1>
+            </div>
+        </div>
+
+        <!--main content area flexbox -->
+        <div class="album-page-main"> 
+            <!-- left column for album and gif overlays -->
+
+            <div class="left-column">
+  
+                <div class="album-art-container">
+                    <img src="is_this_even_real_album_cover.jpg" alt="Album cover for Is This Even Real?" id="album-cover">
+                    <!--This div has each gif for each track, positioned absolutely in css so it overlays the album art. the data-track-gif attribute links each gif to its corresponding track. -->
+                    <div id="gif-overlay-container">
+                        <img src="rain.gif" alt="Rain visual" class="track-gif" data-track-gif="rain.mp3">
+                        <img src="where am i going.gif" alt="Where am I going visual" class="track-gif" data-track-gif="where am i going.mp3">
+                        <img src="breaking a record.gif" alt="Breaking a record visual" class="track-gif" data-track-gif="breaking a record.mp3">
+                        <img src="unbonded.gif" alt="Unbonded visual" class="track-gif" data-track-gif="unbonded.mp3">
+                        <img src="thunder.gif" alt="Thunder visual" class="track-gif" data-track-gif="thunder.mp3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- right column for tracklist and media player -->
+            <div class="right-column">
+                <div id="tracklist-section"> 
+                    <ol id="album-tracklist">
+                    </ol>
+                </div>
+
+                <!-- div for the media player -->
+                <div class="media-player-controls" style="margin-top: 25px;"> 
+                    
+                    <!--SECRET audio element hidden by css -->
+                    <audio id="custom-audio-player"></audio>
+                    <div id="track-info-player">
+                        <p id="current-track-title-player">Select a track</p>
+                    </div>
+
+                    <!--Progress bar-->
+                    <div class="progress-bar-area">
+                        <span id="current-time">0:00</span>
+                        <div id="progress-bar-container" class="progress-bar">
+                            <!--progress bar itself -->
+                            <div id="progress-bar-fill"></div>
+                        </div>
+                        <span id="total-duration">0:00</span>
+                    </div>
+                    
+                    <!-- buttons -->
+                    <div class="player-buttons">
+                        <button id="prev-track-btn">
+                            <img src="https://img.icons8.com/ios-glyphs/30/ffffff/skip-to-start--v2.png" alt="Previous Track">
+                        </button>
+                        <button id="play-pause-btn">
+                            <img id="play-pause-img" src="https://img.icons8.com/ios-glyphs/30/ffffff/play--v2.png" alt="Play Button">
+                        </button>
+                        <button id="next-track-btn">
+                            <img src="https://img.icons8.com/ios-glyphs/30/ffffff/end--v2.png" alt="Next Track">
+                        </button>
+                        <button id="mute-unmute-btn">
+                            <img id="mute-unmute-img" src="https://img.icons8.com/ios-glyphs/30/ffffff/high-volume--v2.png" alt="Mute/Unmute">
+                        </button>
+                        <!-- volume slider -->
+                        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+            </div>
+        </div> 
+        
+    </div>
+
+    <!-- Footer div, contains links to Gus' spotify, my personal website, and icon attribution.-->
+    <div class="site-footer-bar"> 
+        <p>Music by <a href="https://open.spotify.com/artist/1I5Sg75Rcbmxl4aVrppvR0" Gustative> Gustative</a>. Website by <a href="https://yptox.com/">Ezra</a>. Icons by <a href="https://icons8.com/" target="_blank">Icons8</a>.</p>
+    </div> 
+
+</body>
+</html>

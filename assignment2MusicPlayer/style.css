@@ -1,0 +1,332 @@
+/* 
+    YOUR COMMENT HERE: General description - styles for the music player, aiming for a specific retro/pixel look using user's colors. Explain it's intentionally less organized/optimized than professional code.
+*/
+
+/* Basic page stuff */
+body {
+  /* all the base info */
+  background-color: #130c0c; 
+  color: #e6e0ff;    
+  font-family: 'VT323', monospace; 
+          letter-spacing: 2px; /* this makes the font look nicer imo */
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* main page */
+.page {
+  /* uses flexbox for overall page structure and sets background gradient */
+  display: flex;
+  flex-direction: column; 
+    min-height: 100vh;
+  background: linear-gradient(135deg, #ffffff 0%, #130c0c 100%); 
+  background-attachment: fixed;
+}
+
+/* header */
+.site-header {
+  background-color: rgba(34, 34, 41, 0.7); 
+  padding: 10px 20px;
+  border-bottom: 2px solid #4a477a; 
+}
+
+.header-content {
+ 
+  max-width: 1200px;
+  margin: 0 auto; 
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+/* title */
+h1.album-title-header { /* YOUR COMMENT HERE: Styling the main H1 title. Explain why this selector might be overly specific (tag + class). */
+  font-size: 32px;
+  margin: 0;
+  color: #e6e0ff;
+  text-align: center;
+}
+
+/* main content area */
+.album-page-main {
+  /* YOUR COMMENT HERE: URGENT - EXPLAIN FLEXBOX LAYOUT. Uses flexbox for the two columns (left/right). 'flex-wrap' allows stacking on small screens. */
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-grow: 1; 
+}
+
+/* left column */
+div.left-column { /* YOUR COMMENT HERE: Left column takes more space (flex: 2). */
+  flex: 2; 
+  min-width: 280px;
+}
+/* right column */
+div.right-column { /* YOUR COMMENT HERE: Right column takes less space (flex: 1). */
+  flex: 1;
+  min-width: 300px;
+}
+
+/* album art box */
+.album-art-container {
+  /* YOUR COMMENT HERE: URGENT - POSITIONING CONTEXT FOR OVERLAY. 'position: relative' is essential here so the absolutely positioned '#gif-overlay-container' stays within this box. */
+  border: 2px solid #4a477a;
+  padding: 5px;
+  background-color: #222229;
+  position: relative; 
+  overflow: hidden; 
+}
+img#album-cover { /* YOUR COMMENT HERE: Styling the album image itself using its ID. */
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* YOUR COMMENT HERE: URGENT - GIF OVERLAY CONTAINER STYLES. 'position: absolute' makes it sit on top of the sibling 'img#album-cover' (within the relative parent). Co-ordinates position it within the parent's padding. 'pointer-events: none' is important. */
+#gif-overlay-container {
+  position: absolute; 
+  top: 5px;         
+  left: 5px;        
+  right: 5px;       
+  bottom: 5px;      
+  pointer-events: none; 
+}
+
+/* YOUR COMMENT HERE: URGENT - INDIVIDUAL GIF STYLES. Each GIF fills the overlay container. 'opacity: 0' hides them initially. JS controls opacity. Note the lack of CSS transition (intentionally removed for a less smooth/more basic feel). */
+.track-gif {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  opacity: 0; 
+  /* transition: opacity 0.2s ease-in-out; */ /* Transition removed */
+}
+
+
+/* tracklist box */
+#tracklist-section { /* YOUR COMMENT HERE: Styling the tracklist container using its ID. */
+  background-color: #222229;
+  padding: 15px;
+  border: 2px solid #4a477a;
+}
+
+/* song list */
+#album-tracklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* each song */
+li.track-item { /* YOUR COMMENT HERE: Styling for each list item (song) in the tracklist. Explain the :hover and .playing states. */
+  display: flex;
+  align-items: center;
+  padding: 8px 5px;
+  cursor: pointer;
+  font-size: 18px;
+  border-bottom: 1px dashed #a09cc9; 
+  color: #a09cc9; 
+}
+li.track-item:last-child { 
+  border-bottom: none; 
+}
+li.track-item:hover { 
+  background-color: rgba(126, 131, 133, 0.1);
+  color: #e6e0ff; 
+}
+/* playing song style */
+li.track-item.playing { 
+  background-color: #6c7a7e; 
+  color: #222229; 
+}
+li.track-item.playing span.track-number, 
+li.track-item.playing span.track-duration {
+  color: #222229;
+}
+/* song title */
+span.track-title { 
+  color: #e6e0ff;
+  flex-grow: 1;
+}
+/* track number */
+span.track-number {
+  min-width: 25px;
+  margin-right: 8px;
+  text-align: right;
+}
+/* track time */
+span.track-duration {
+  margin-left: 8px;
+}
+
+/* Player controls box */
+.media-player-controls {
+  background-color: #222229;
+  padding: 15px;
+  border: 2px solid #4a477a;
+  /* margin-top: 20px; -- Using inline style in HTML instead */
+}
+
+/* current song info */
+#track-info-player {
+  text-align: center;
+  margin-bottom: 10px;
+  min-height: 25px; 
+}
+p#current-track-title-player { 
+  font-size: 22px;
+  margin: 0 0 3px 0;
+  color: #e6e0ff;
+}
+
+/* progress bar area */
+.progress-bar-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+/* time text */
+#current-time, 
+#total-duration {
+  font-size: 16px;
+  min-width: 40px;
+  text-align: center;
+  color: #a09cc9;
+}
+
+/* progress bar track */
+div#progress-bar-container { 
+  flex-grow: 1;
+  height: 10px;
+  background-color: rgb(49, 48, 71); 
+  border: 1px solid #4a477a;
+  cursor: pointer;
+}
+/* progress bar fill */
+#progress-bar-fill { 
+  height: 100%;
+  background-color: #6c7a7e; 
+  width: 0%;
+}
+div#progress-bar-container:hover #progress-bar-fill{ 
+  background-color: #50757e;
+}
+
+/* player buttons */
+.player-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.player-buttons button { 
+  background-color: rgb(49, 48, 71);
+  border: 1px solid #4a477a;
+  padding: 6px;
+  cursor: pointer;
+}
+.player-buttons button:hover {
+  background-color: #6c7a7e; 
+}
+.player-buttons button:active { 
+  background-color: #50757e;
+}
+/* button images */
+.player-buttons button img { 
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+/* play pause button image */
+#play-pause-btn img { 
+  width: 22px;
+  height: 22px;
+}
+
+/* volume slider */
+/* YOUR COMMENT HERE: Styling for the volume slider. Explain the cross-browser prefixes/pseudo-elements needed for custom styling ('-webkit-appearance', '::-webkit-slider-thumb', '::-moz-range-thumb'). */
+input#volume-slider { 
+  width: 80px;
+  height: 8px;
+  accent-color: #6c7a7e; 
+  background: rgb(49, 48, 71);
+  border: 1px solid #4a477a;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 8px;
+  height: 12px;
+  background: #e6e0ff; 
+  cursor: pointer;
+  border: 1px solid #4a477a;
+}
+input#volume-slider:hover::-webkit-slider-thumb {
+  background: #6c7a7e; 
+}
+input#volume-slider::-moz-range-thumb { 
+  width: 8px;
+  height: 12px;
+  background: #e6e0ff;
+  cursor: pointer;
+  border: 1px solid #4a477a;
+}
+input#volume-slider:hover::-moz-range-thumb {
+  background: #6c7a7e;
+}
+
+/* Footer */
+div.site-footer-bar { /* YOUR COMMENT HERE: Styling the footer (using a div). */
+  background-color: rgba(34, 34, 41, 0.7);
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 16px;
+  border-top: 2px solid #4a477a;
+  color: #a09cc9; 
+}
+div.site-footer-bar a { 
+  color: #e6e0ff;
+  text-decoration: none;
+}
+div.site-footer-bar a:hover {
+  text-decoration: underline;
+  color: #6c7a7e;
+}
+
+
+/* small screen styles */
+/* YOUR COMMENT HERE: URGENT - EXPLAIN MEDIA QUERY. Styles inside here only apply on screens 768px wide or smaller. Used to make layout better on phones (stacking columns, smaller text). */
+@media (max-width: 768px) {
+  body {
+    letter-spacing: 1px; 
+  }
+  h1.album-title-header { 
+    font-size: 24px;
+  }
+  
+  .album-page-main {
+    flex-direction: column; 
+    align-items: center;
+    padding: 15px;
+  }
+  div.left-column, div.right-column { 
+    width: 100%;
+    max-width: 450px;
+    flex: none;
+  }
+
+  li.track-item { font-size: 16px; } 
+
+  p#current-track-title-player { font-size: 20px; } 
+  #current-time, 
+  #total-duration {
+    font-size: 14px;
+  }
+}
