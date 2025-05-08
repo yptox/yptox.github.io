@@ -1,10 +1,10 @@
 /* 
-    YOUR COMMENT HERE: General description - styles for the music player, aiming for a specific retro/pixel look using user's colors. Explain it's intentionally less organized/optimized than professional code.
+     with this site i'm aiming for a sort of vaguely retro / computer terminal inspired look. I tried to keep things as simple as possible, but I did end up having to research some more complicated elements. Overall I'm quite happy with how it looks.
 */
 
-/* Basic page stuff */
+/* all the base info */
 body {
-  /* all the base info */
+
   background-color: #130c0c; 
   color: #e6e0ff;    
   font-family: 'VT323', monospace; 
@@ -40,7 +40,7 @@ body {
 }
 
 /* title */
-h1.album-title-header { /* YOUR COMMENT HERE: Styling the main H1 title. Explain why this selector might be overly specific (tag + class). */
+h1.album-title-header { 
   font-size: 32px;
   margin: 0;
   color: #e6e0ff;
@@ -49,7 +49,7 @@ h1.album-title-header { /* YOUR COMMENT HERE: Styling the main H1 title. Explain
 
 /* main content area */
 .album-page-main {
-  /* YOUR COMMENT HERE: URGENT - EXPLAIN FLEXBOX LAYOUT. Uses flexbox for the two columns (left/right). 'flex-wrap' allows stacking on small screens. */
+  /* using flex-wrap to allow the flex boxes to stack when theres less horizontal screen space. */
   display: flex;
   flex-wrap: wrap; 
   gap: 20px;
@@ -59,33 +59,33 @@ h1.album-title-header { /* YOUR COMMENT HERE: Styling the main H1 title. Explain
   flex-grow: 1; 
 }
 
-/* left column */
-div.left-column { /* YOUR COMMENT HERE: Left column takes more space (flex: 2). */
+/* album art */
+div.left-column { 
   flex: 2; 
   min-width: 280px;
 }
-/* right column */
-div.right-column { /* YOUR COMMENT HERE: Right column takes less space (flex: 1). */
+/* tracklist + player buttons */
+div.right-column { 
   flex: 1;
   min-width: 300px;
 }
 
 /* album art box */
 .album-art-container {
-  /* YOUR COMMENT HERE: URGENT - POSITIONING CONTEXT FOR OVERLAY. 'position: relative' is essential here so the absolutely positioned '#gif-overlay-container' stays within this box. */
+  /* using position:relative so the gif overlay stays in the box */
   border: 2px solid #4a477a;
   padding: 5px;
   background-color: #222229;
   position: relative; 
   overflow: hidden; 
 }
-img#album-cover { /* YOUR COMMENT HERE: Styling the album image itself using its ID. */
+img#album-cover { 
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* YOUR COMMENT HERE: URGENT - GIF OVERLAY CONTAINER STYLES. 'position: absolute' makes it sit on top of the sibling 'img#album-cover' (within the relative parent). Co-ordinates position it within the parent's padding. 'pointer-events: none' is important. */
+/*  making the position absolute lets the gif overlays sit on top of the album cover*/
 #gif-overlay-container {
   position: absolute; 
   top: 5px;         
@@ -95,7 +95,7 @@ img#album-cover { /* YOUR COMMENT HERE: Styling the album image itself using its
   pointer-events: none; 
 }
 
-/* YOUR COMMENT HERE: URGENT - INDIVIDUAL GIF STYLES. Each GIF fills the overlay container. 'opacity: 0' hides them initially. JS controls opacity. Note the lack of CSS transition (intentionally removed for a less smooth/more basic feel). */
+/* using the javascript that controls the audio also control the opacity of the gif. by default its at 0. Also using css animation for smooth transition */
 .track-gif {
   position: absolute;
   top: 0;
@@ -104,25 +104,25 @@ img#album-cover { /* YOUR COMMENT HERE: Styling the album image itself using its
   height: 100%;
   object-fit: cover; 
   opacity: 0; 
-  /* transition: opacity 0.2s ease-in-out; */ /* Transition removed */
+   transition: opacity 0.2s ease-in-out; 
 }
 
 
 /* tracklist box */
-#tracklist-section { /* YOUR COMMENT HERE: Styling the tracklist container using its ID. */
+#tracklist-section { 
   background-color: #222229;
   padding: 15px;
   border: 2px solid #4a477a;
 }
 
-/* song list */
+/* list */
 #album-tracklist {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-/* each song */
-li.track-item { /* YOUR COMMENT HERE: Styling for each list item (song) in the tracklist. Explain the :hover and .playing states. */
+/* each seperate track. different colour states for when mouse hovering and when playing*/
+li.track-item { 
   display: flex;
   align-items: center;
   padding: 8px 5px;
@@ -138,7 +138,7 @@ li.track-item:hover {
   background-color: rgba(126, 131, 133, 0.1);
   color: #e6e0ff; 
 }
-/* playing song style */
+
 li.track-item.playing { 
   background-color: #6c7a7e; 
   color: #222229; 
@@ -163,12 +163,12 @@ span.track-duration {
   margin-left: 8px;
 }
 
-/* Player controls box */
+/* Player buttons box */
 .media-player-controls {
   background-color: #222229;
   padding: 15px;
   border: 2px solid #4a477a;
-  /* margin-top: 20px; -- Using inline style in HTML instead */
+
 }
 
 /* current song info */
@@ -236,20 +236,20 @@ div#progress-bar-container:hover #progress-bar-fill{
 .player-buttons button:active { 
   background-color: #50757e;
 }
-/* button images */
+/* button icons */
 .player-buttons button img { 
   width: 18px;
   height: 18px;
   display: block;
 }
-/* play pause button image */
+/* play/ pause button icon */
 #play-pause-btn img { 
   width: 22px;
   height: 22px;
 }
 
-/* volume slider */
-/* YOUR COMMENT HERE: Styling for the volume slider. Explain the cross-browser prefixes/pseudo-elements needed for custom styling ('-webkit-appearance', '::-webkit-slider-thumb', '::-moz-range-thumb'). */
+
+/*Volume slider. Had to do research to figure out exactly how i wanted this to work, it uses cross-browser prefixesfor custom styling */
 input#volume-slider { 
   width: 80px;
   height: 8px;
@@ -283,7 +283,7 @@ input#volume-slider:hover::-moz-range-thumb {
 }
 
 /* Footer */
-div.site-footer-bar { /* YOUR COMMENT HERE: Styling the footer (using a div). */
+div.site-footer-bar { 
   background-color: rgba(34, 34, 41, 0.7);
   padding: 15px 20px;
   text-align: center;
@@ -301,8 +301,7 @@ div.site-footer-bar a:hover {
 }
 
 
-/* small screen styles */
-/* YOUR COMMENT HERE: URGENT - EXPLAIN MEDIA QUERY. Styles inside here only apply on screens 768px wide or smaller. Used to make layout better on phones (stacking columns, smaller text). */
+/* small screen styles for mobile or half tab*/
 @media (max-width: 768px) {
   body {
     letter-spacing: 1px; 
