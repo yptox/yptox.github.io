@@ -232,9 +232,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return minutes + ':' + seconds;
     }
 
-    // --- MODIFIED SECTION ---
-    // This loop builds the tracklist HTML. Durations are now read directly
-    // from the albumTracks array, removing the need for async fetching.
+
+    // showcasing the tracklist
     for (var i = 0; i < albumTracks.length; i++) {
         var track = albumTracks[i]; // fetches current track object which has gif, audio, and duration
         var listItem = document.createElement('li');
